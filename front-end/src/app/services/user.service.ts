@@ -9,7 +9,7 @@ export class UserService {
 
   constructor() { }
 
-  getPostById(userId): Promise<IUser> {
+  getUserById(userId: String): Promise<IUser> {
     return new Promise((resolve, reject) => {
       let user = mockUsers.find(el => {
         return String(el.id) === userId

@@ -1,2 +1,3 @@
-<app-user-details></app-user-details>
-<app-post-details></app-post-details>
+<app-user-component *ngIf=author [user]=author></app-user-component>
+<hr>
+<app-post-details *ngIf=post [post]=post></app-post-details>

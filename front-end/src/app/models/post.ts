@@ -2,10 +2,10 @@ export interface IPost {
     id: number;
     authorId: number;
     type: TYPES;
-    content: String;
+    content: string;
 }
 
-export const enum TYPES{
+export enum TYPES{
     DOCUMENT,
     VIDEO,
     PICTURE,

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { PostPageComponent } from './post-page/post-page.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserComponent } from './user/user.component';
 
 
 
@@ -10,7 +10,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
   declarations: [
     PostDetailsComponent,
     PostPageComponent,
-    UserDetailsComponent
+    UserComponent
   ],
   imports: [
     CommonModule,

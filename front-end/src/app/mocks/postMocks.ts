@@ -19,4 +19,10 @@ export const mockPosts: Array<IPost> = [
             type: TYPES.PICTURE,
             content: 'data:image/jpeg;base64,mockdata'
         },
+        {
+            id: 4,
+            authorId: 100,
+            type: TYPES.LINK,
+            content: 'www.google.com'
+        }
 ]

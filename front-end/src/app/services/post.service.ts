@@ -9,19 +9,19 @@ export class PostService {
 
   constructor() {}
 
-getPostById(postId): Promise<IPost> {
-  return new Promise((resolve, reject) => {
-    let post = mockPosts.find(el => {
-      return String(el.id) === postId
+  getPostById(postId: String): Promise<IPost> {
+    return new Promise((resolve, reject) => {
+      let post = mockPosts.find(el => {
+        return String(el.id) === postId
+      });
+
+      if (post) {
+        resolve(post)
+      } else {
+        reject('Post not found!')
+      }
+
     });
-
-    if (post) {
-      resolve(post)
-    } else {
-      reject('Post not found!')
-    }
-
-  });
-}
+  }
 
 }

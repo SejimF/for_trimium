@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IPost } from 'src/app/models/post';
+import { IUser } from 'src/app/models/user';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-page',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostPageComponent implements OnInit {
 
-  constructor() { }
+   post: IPost;
+   author: IUser;
+
+  constructor(
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+
+    const data = this.route.snapshot.data.data
+
+    this.post = data.post;
+    this.author = data.author;
   }
 
 }

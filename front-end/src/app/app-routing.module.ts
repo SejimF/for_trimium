@@ -7,13 +7,17 @@ import { PAGE_ROUTES } from './components/social-network/social-network.routing'
 
 const routes: Routes = [
   {
-    path: "pageNotFound",
+    path: 'pageNotFound',
     component: PageNotFoundComponent
   },
   
   {
     path: 'post',
     children: PAGE_ROUTES
+  },
+  {
+    path: '**',
+    redirectTo: 'pageNotFound'
   }
 ];
 
