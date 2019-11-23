@@ -6,12 +6,14 @@ import { PostService } from '../services/post.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostResolver implements Resolve<IPost> {
-  constructor(private service: PostService) {}
+  constructor(private postService: PostService) {}
 
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any>|Promise<any>|any {
-    // return this.service.getHero(route.paramMap.get('id'));
+        const postId = route.paramMap.get('id');
+        this.postService.getPostById(postId);
+        return;
   }
 }

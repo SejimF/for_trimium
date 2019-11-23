@@ -3,5 +3,6 @@ export interface IUser {
     blocked: Boolean;
     firstName: String;
     lastName: String;
-    patronymic: String; 
+    patronymic: String;
+    postIds: Array<number>;
 }
