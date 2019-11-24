@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SocialNetworkModule } from './components/social-network/social-network.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SocialNetworkModule } from './components/social-network/social-network.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SocialNetworkModule
+    SocialNetworkModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

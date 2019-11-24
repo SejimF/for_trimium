@@ -21,8 +21,11 @@ export class PostPageComponent implements OnInit {
 
     const data = this.route.snapshot.data.data
 
-    this.post = data.post;
-    this.author = data.author;
+    if (data) {
+      this.post = data.post;
+      this.author = data.author;
+    }
+    
   }
 
 }
