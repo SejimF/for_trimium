@@ -29,7 +29,7 @@ npm start
 cd ../back-end
 npm i
 ```
-В app.config.js в поменять данные на свои.
+В app.config.js поменять данные на свои.
 ```
 npm start
 ```
