@@ -6,5 +6,7 @@
 
 ```
 git clone https://github.com/SejimF/for_trimium.git
-git cd back-end
+cd for_trimium
+
+cd front-end
 ```

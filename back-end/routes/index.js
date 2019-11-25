@@ -62,7 +62,7 @@ const express = require("express"),
                     connection.query(profiles, function(err, results, fields) {
                         if (err) {
                           return  res.status(507).render('error', {
-                            response: err.message,
+                            response: err ? err.message : err
                           });
                         } else {
 

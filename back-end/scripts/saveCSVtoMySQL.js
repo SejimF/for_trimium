@@ -1,31 +1,33 @@
 const fs = require("fs"),
-      fastcsv = require("fast-csv");
+  fastcsv = require("fast-csv");
 
-      const dbPool = require('../utils/database').pool;
+const dbPool = require('../utils/database').pool;
 
-      console.log('Подготавливаем список');
+console.log('Подготавливаем список');
 
-      let csvData = [];
-      fs.createReadStream("scripts/import.csv")
-        .pipe(fastcsv.parse( {delimiter:";"} ))
-        .on("data", function(data) {
-            
-          csvData.push(data);
-        })
-        .on("end", function() {
-          // remove the first line: header
-          csvData.shift();
+let csvData = [];
+fs.createReadStream("scripts/import.csv")
+  .pipe(fastcsv.parse({
+    delimiter: ";"
+  }))
+  .on("data", function (data) {
 
-          console.log('Список подготовлен');
-        
-          // open the connection
-          dbPool.getConnection((error, connection) => {
+    csvData.push(data);
+  })
+  .on("end", function () {
 
-            if (error) {
-              console.error(error);
-            } else {
+    csvData.shift();
 
-              let profiles = `create table if not exists test(
+    console.log('Список подготовлен');
+
+
+    dbPool.getConnection((error, connection) => {
+
+      if (error) {
+        console.error(error);
+      } else {
+
+        let profiles = `create table if not exists test(
                 active varchar(255) not null,
                 name varchar(255) not null,
                 last_name varchar(255) not null,
@@ -38,34 +40,30 @@ const fs = require("fs"),
                 city varchar(255) not null
             )`;
 
-            
-      
+        connection.query(profiles, function (err, results, fields) {
 
+          if (err) {
+            console.log(err.message)
+          } else {
 
-              connection.query(profiles, function(err, results, fields) {
+            let query = `INSERT INTO test (active, name, last_name, email, xml_id, personal_gender, personal_birthday, work_position, region, city) VALUES ?`;
 
-                if (err) {
-                  console.log(err.message)
-                } else {
+            connection.query(query, [csvData], (error, responseQuery) => {
 
-                  let query = `INSERT INTO test (active, name, last_name, email, xml_id, personal_gender, personal_birthday, work_position, region, city) VALUES ?`;
+              if (error) {
+                console.log(error.sqlMessage);
+              } else {
+                console.log('Результат');
+                console.log(responseQuery);
+              }
 
-                  connection.query(query, [csvData], (error, responseQuery) => {
+            });
 
-                    if (error) {
-                        console.log(error.sqlMessage);
-                    } else {
-                        console.log('Результат');
-                        console.log(responseQuery);
-                    }
-    
-                  });
+          }
 
-                }
-
-              });
-
-
-            }
-          });
         });
+
+
+      }
+    });
+  });

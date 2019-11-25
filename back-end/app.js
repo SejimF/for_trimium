@@ -2,42 +2,15 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     app = express();
     http = require('http');
-    // const multer = require('multer');
-
-
-    // const fileStorage = multer.diskStorage({
-    //   destination: (req, file, cb) => {
-    //     cb(null, 'csv');
-    //   },
-    //   filename: (req, file, cb) => {
-    //     cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
-    //   }
-    // });
-
-    // const fileFilter = (req, file, cb) => {
-    //   if(file.mimetype === 'image/gif' || file.mimetype === 'image/jpg' || file.mimetype === 'image.jpeg') {
-    //     cb(null, true);
-    //   } else {
-    //     cb(null, false);
-    //   }
-    // }
-
 
     app.set("view engine", "ejs");
 
     let indexRoute = require("./routes/index");
-
     
-    // app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(multer().single('csv'));
-// app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(express.static(__dirname + "public"));
 
-
-
 app.use("/", indexRoute);
-
 
 const port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
@@ -53,17 +26,14 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 
-
 function normalizePort(val) {
     var port = parseInt(val, 10);
   
     if (isNaN(port)) {
-      // named pipe
       return val;
     }
   
     if (port >= 0) {
-      // port number
       return port;
     }
   
