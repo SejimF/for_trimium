@@ -1,10 +1,6 @@
 const mysql = require('mysql');
+const config = require('../app.config')
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    database: 'trimium',
-    password: '11021102'
-});
+const pool = mysql.createPool(config.dbConfig);
 
 exports.pool = pool;
