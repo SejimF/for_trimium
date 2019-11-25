@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'trimium',
     password: '11021102'
 });
 
-module.exports = connection;
+exports.pool = pool;

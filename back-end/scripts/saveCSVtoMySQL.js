@@ -4,6 +4,7 @@ const fs = require("fs"),
       const db = require('../utils/database');
 
       console.log('Подготавливаем список');
+
       let csvData = [];
       fs.createReadStream("scripts/import.csv")
         .pipe(fastcsv.parse( {delimiter:";"} ))
@@ -24,11 +25,8 @@ const fs = require("fs"),
             } else {
       
               let query = `INSERT INTO test (active, name, last_name, email, xml_id, personal_gender, personal_birthday, work_position, region, city) VALUES ?`;
-      
-              
 
               db.query(query, [csvData], (error, response) => {
-                
 
                 if (error) {
                     console.log(error);

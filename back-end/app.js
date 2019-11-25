@@ -2,17 +2,51 @@ const express = require('express'),
     bodyParser = require('body-parser'),
     app = express();
     http = require('http');
+    // const multer = require('multer');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
+    // const fileStorage = multer.diskStorage({
+    //   destination: (req, file, cb) => {
+    //     cb(null, 'csv');
+    //   },
+    //   filename: (req, file, cb) => {
+    //     cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
+    //   }
+    // });
+
+    // const fileFilter = (req, file, cb) => {
+    //   if(file.mimetype === 'image/gif' || file.mimetype === 'image/jpg' || file.mimetype === 'image.jpeg') {
+    //     cb(null, true);
+    //   } else {
+    //     cb(null, false);
+    //   }
+    // }
+
+
+    app.set("view engine", "ejs");
+
+    let indexRoute = require("./routes/index");
+
+    
+    // app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(multer().single('csv'));
+// app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(express.static(__dirname + "public"));
+
+
+
+app.use("/", indexRoute);
 
 
 const port = normalizePort(process.env.PORT || '8080');
 app.set('port', port);
 
 const server = http.createServer(app);
+
+app.use(function(req, res, next){
+	next();
+});
 
 server.listen(port);
 server.on('error', onError);
