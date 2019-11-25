@@ -13,7 +13,7 @@ const express = require("express"),
     router.post("/send-file", function (req, res) {
 
 
-        let response = 'asdasdsadsad';
+        let response = '';
 
         var form = new formidable.IncomingForm();
 
@@ -38,6 +38,7 @@ const express = require("express"),
 
                 // open the connection
                 dbPool.getConnection((error, connection) => {
+                    
                   if (error) {
                     response = `Ошибка Соединения с ДБ ${error}`;
                   } else {
